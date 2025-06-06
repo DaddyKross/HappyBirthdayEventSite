@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <title>Таймер обратного отсчета до ДР мамы</title>
     <style>
+        /* Общий стиль */
         body {
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             background-color: #000000;
-            font-family: Arial, sans-serif;
+            font-family: 'Trebuchet MS', sans-serif;
         }
         
         .timer-container {
@@ -19,7 +20,7 @@
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            background-image: linear-gradient(to bottom right, #ff7b54, #ffc371);
+            background-image: linear-gradient(to bottom right, #1c584b, #3db1a0);
         }
         
         h1 {
@@ -30,17 +31,60 @@
         p {
             font-size: 2rem;
         }
+        
+        /* Стиль кнопки с эффектом чешуи */
+        button {
+            display: inline-block;
+            padding: 15px 30px;
+            font-size: 1.5em;
+            color: black;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            outline: none;
+            border: none;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            width: fit-content;
+            margin-top: 30px;
+        }
+        
+        button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('scale-texture.jpg'); /* Путь к изображению чешуи */
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            opacity: 0.8;
+            filter: grayscale(10%); /* Чуть смягчаем оттенок */
+            transform: scaleX(-1); /* Флип горизонтально для интересного эффекта */
+            z-index: -1;
+        }
+        
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
     </style>
 </head>
 <body>
 <div class="timer-container">
     <h1>До Дня Рождения мамы осталось:</h1>
     <p id="countdown"></p>
+    <!-- Кнопка -->
+    <button>Поздравить маму!</button>
 </div>
 <script>
-    // Функция для отображения оставшегося времени
+    // Код таймера остается прежним
     function updateCountdown() {
-        const targetDate = new Date("June 10, 2025"); // Дата Дня Рождения
+        const targetDate = new Date("June 10, 2025");
         const currentDate = new Date();
     
         let diffTime = Math.abs(targetDate.getTime() - currentDate.getTime());
@@ -53,7 +97,6 @@
             `${days}d ${hours}h ${minutes}m ${seconds}s`;
     }
 
-    // Обновление таймера каждые секунды
     setInterval(updateCountdown, 1000);
 </script>
 </body>
