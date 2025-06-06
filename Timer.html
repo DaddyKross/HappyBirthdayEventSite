@@ -33,6 +33,14 @@
         p {
             font-size: 2rem;
         }
+
+                
+        /* Стиль для GIF-изображения */
+        .animated-gif {
+            max-width: 300px; /* Ширина изображения */
+            height: auto; /* Автоматическое масштабирование высоты */
+            margin-top: 20px; /* Отступ сверху */
+        }
         
         /* Стиль кнопки с эффектом чешуи */
         button {
@@ -75,20 +83,6 @@
             transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
-        
-        /* Конфеты эффекты */
-        .confetti-particle {
-            position: fixed;
-            width: 10px;
-            height: 10px;
-            background-color: red;
-            animation: confettiAnimation 5s cubic-bezier(.25,.46,.45,.94) both infinite;
-        }
-        
-        @keyframes confettiAnimation {
-            from {transform: translateY(0);}
-            to {transform: translateY(-100vmax);}
-        }
     </style>
 </head>
 <body>
@@ -101,6 +95,9 @@
 
 <!-- Скрытый элемент для звука -->
 <audio id="partySound" src="party-sound.mp3" preload="auto"></audio>
+
+<!-- GIF-анимация со змейкой -->
+<img src="snake-animation.gif" alt="анимированная змея" class="animated-gif"/>
 
 <script>
     // Таймер обратного отсчета
@@ -120,33 +117,11 @@
 
     setInterval(updateCountdown, 1000);
 
-    // Воспроизведение звука и запуск конфетти
-    function playSoundAndShowConfetti() {
+     // Воспроизведение звука
+     function playSoundAndShowConfetti() {
         var sound = document.getElementById('partySound');
         sound.play(); // Проигрываем звук
-    
-        for(let i = 0; i < 50; i++) {
-            createConfettiParticle();
-        }
-    }
-
-    // Создание частицы конфетти
-    function createConfettiParticle() {
-        let particle = document.createElement('div');
-        particle.classList.add('confetti-particle');
-        particle.style.left = Math.random() * window.innerWidth + 'px';
-        particle.style.backgroundColor = randomColor();
-        document.body.appendChild(particle);
-    
-        setTimeout(() => {
-            document.body.removeChild(particle);
-        }, 5000); // Удаление элемента спустя 5 секунд
-    }
-
-    // Генерация случайного цвета
-    function randomColor() {
-        return '#' + Math.floor(Math.random()*16777215).toString(16);
-    }
+     }
 </script>
 </body>
 </html>
