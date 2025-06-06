@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Таймер обратного отсчета до ДР мамы</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #000000;
+            font-family: Arial, sans-serif;
+        }
+        
+        .timer-container {
+            text-align: center;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-image: linear-gradient(to bottom right, #ff7b54, #ffc371);
+        }
+        
+        h1 {
+            margin-bottom: 20px;
+            font-size: 3rem;
+        }
+        
+        p {
+            font-size: 2rem;
+        }
+    </style>
+</head>
+<body>
+<div class="timer-container">
+    <h1>До Дня Рождения мамы осталось:</h1>
+    <p id="countdown"></p>
+</div>
+<script>
+    // Функция для отображения оставшегося времени
+    function updateCountdown() {
+        const targetDate = new Date("June 10, 2025"); // Дата Дня Рождения
+        const currentDate = new Date();
+    
+        let diffTime = Math.abs(targetDate.getTime() - currentDate.getTime());
+        const days = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diffTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((diffTime % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diffTime % (1000 * 60)) / 1000);
+    
+        document.getElementById('countdown').innerHTML =
+            `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    // Обновление таймера каждые секунды
+    setInterval(updateCountdown, 1000);
+</script>
+</body>
+</html>
